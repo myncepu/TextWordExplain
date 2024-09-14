@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { cn } from "@/lib/utils";
 import Header from "./_components/header";
 import Footer from "./_components/footer";
-import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,8 +19,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "TextHuman | 汉语新解&编辑",
-  description: "通过对汉语进行全新的解释",
+  title: "Card Generator AI",
+  description: "Card Generator AI",
 };
 
 export default function RootLayout({

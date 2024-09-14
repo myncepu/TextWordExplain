@@ -1,4 +1,4 @@
-export const SITE_NAME = "TextHuman";
+export const SITE_NAME = "Card Generator AI";
 
 export const presetPrompts = ["国足", "程序员", "独立开发者"];
 

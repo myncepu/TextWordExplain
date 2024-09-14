@@ -14,7 +14,7 @@ export default function Header() {
             height={40}
           />
           <span className="ml-2 text-xl font-semibold text-gray-800 ">
-            TextHuman
+            CardGeneratorAI
           </span>
         </Link>
       </div>
