@@ -29,20 +29,12 @@ export default function Header() {
       </div>
 
       <div className="flex items-center gap-3">
-        <Link
+        {/* <Link
           href="https://github.com/myncepu/TextWordExplain"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Icons.gitHub className="w-6 h-6" />
-        </Link>
-
-        {/* <Link
-          href="https://www.buymeacoffee.com/tonyliang6"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="bmc-logo.svg" className="w-6 h-6" alt="Buy me a coffee" />
         </Link> */}
       </div>
     </header>
