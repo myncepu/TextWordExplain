@@ -1,4 +1,3 @@
-import { Icons } from "@/components/common/icons";
 import Link from "next/link";
 
 export default function Header() {
