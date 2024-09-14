@@ -1,6 +1,5 @@
 import { SITE_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { IconBrandGithub } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
@@ -25,10 +24,10 @@ export default function Footer() {
             <Logo />
           </div>
 
+          Inspired by：{" "}
           <ul className="transition-colors flex sm:flex-row flex-col hover:text-text-neutral-800 text-neutral-600 dark:text-neutral-300 list-none gap-4">
-            Inspired By{" "}
-            {pages.map((page, idx) => (
-              <li key={"pages" + idx} className="list-none">
+            {pages.map((page) => (
+              <li key={page.title} className="list-none">
                 <Link
                   className="transition-colors hover:text-text-neutral-800 "
                   href={page.href}
@@ -87,7 +86,7 @@ const GridLineHorizontal = ({
         "dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
         className
       )}
-    ></div>
+    />
   );
 };
 
