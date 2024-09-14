@@ -30,7 +30,7 @@ export default function Header() {
 
       <div className="flex items-center gap-3">
         <Link
-          href="https://github.com/tonyljx/TextWordExplain?tab=readme-ov-file"
+          href="https://github.com/myncepu/TextWordExplain"
           target="_blank"
           rel="noopener noreferrer"
         >

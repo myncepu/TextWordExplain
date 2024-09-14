@@ -3,13 +3,17 @@ import { cn } from "@/lib/utils";
 import { IconBrandGithub } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import type React from "react";
 
 export default function Footer() {
   const pages = [
     {
       title: "李继刚",
       href: "https://web.okjike.com/u/752D3103-1107-43A0-BA49-20EC29D09E36",
+    },
+    {
+      title: "texthuman.ai",
+      href: "https://texthuman.ai/",
     },
   ];
 

@@ -1,10 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 
-const anthropic = new Anthropic({
-  apiKey: process.env["ANTHROPIC_API_KEY"],
-  baseURL: process.env["ANTHROPIC_API_URL"],
+const openai = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENROUTER_API_KEY,
+  defaultHeaders: {
+    "HTTP-Referer": process.env.YOUR_SITE_URL, // 可选,用于在openrouter.ai排名中包含您的应用
+    "X-Title": process.env.YOUR_SITE_NAME, // 可选,在openrouter.ai排名中显示
+  },
 });
 
 const systemPrompt = `
@@ -123,11 +127,11 @@ export async function POST(req: Request) {
   const { prompt } = await req.json();
 
   try {
-    const response = await anthropic.messages.create({
-      model: "claude-3-5-sonnet-20240620",
-      max_tokens: 1024,
+    const response = await openai.chat.completions.create({
+      model: "anthropic/claude-3.5-sonnet-20240620",
+      max_tokens: 2048,
       messages: [
-        { role: "assistant", content: systemPrompt },
+        { role: "system", content: systemPrompt },
         {
           role: "user",
           content: `用户提供的信息 ${prompt}`,
@@ -135,22 +139,22 @@ export async function POST(req: Request) {
       ],
     });
 
-    // 从响应中提取SVG内容
-    console.log("response ", response);
+    console.log("OpenRouter response:", response);
 
-    const content = response.content[0];
-    if (content.type === "text") {
-      console.log("返回 text ", content.text);
-      const htmlMatch = content.text.match(/<html[\s\S]*?<\/html>/);
+    const content = response.choices[0].message.content;
+    if (content) {
+      console.log("返回 text ", content);
+      const htmlMatch = content.match(/<html[\s\S]*?<\/html>/);
       const htmlContent = htmlMatch ? htmlMatch[0] : null;
+      console.log({ htmlContent })
       return NextResponse.json({
         htmlContent,
       });
     }
 
     return NextResponse.json({
-      svgContent: null,
-      fullResponse: response.content,
+      htmlContent: null,
+      fullResponse: response.choices[0].message,
     });
   } catch (error) {
     console.error("Error in chat API:", error);
